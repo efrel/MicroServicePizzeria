@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2_Application\Application.MSPizzeria.DTO\Application.MSPizzeria.DTO.csproj" />
+    <ProjectReference Include="..\..\2_Application\Application.MSPizzeria.Queries\Application.MSPizzeria.Queries.csproj" />
+    <ProjectReference Include="..\..\2_Application\Application.MSPizzeria.Commands\Application.MSPizzeria.Commands.csproj" />
+    <ProjectReference Include="..\..\3_Domain\Domain.MSPizzeria.Entity\Domain.MSPizzeria.Entity.csproj" />
+    <ProjectReference Include="..\..\3_Domain\Domain.MSPizzeria.Core\Domain.MSPizzeria.Core.csproj" />
+    <ProjectReference Include="..\..\4_Infrastructure\Infrastructure.MSPizzeria.Data\Infrastructure.MSPizzeria.Data.csproj" />
+    <ProjectReference Include="..\..\4_Infrastructure\Infrastructure.MSPizzeria.Repository\Infrastructure.MSPizzeria.Repository.csproj" />
+    <ProjectReference Include="..\..\4_Infrastructure\Infrastructure.MSPizzeria.Auth\Infrastructure.MSPizzeria.Auth.csproj" />
+    <ProjectReference Include="..\..\5_Transversal\Transversal.MSPizzeria.Common\Transversal.MSPizzeria.Common.csproj" />
+    <ProjectReference Include="..\..\5_Transversal\Transversal.MSPizzeria.Mapper\Transversal.MSPizzeria.Mapper.csproj" />
+    <ProjectReference Include="..\..\5_Transversal\Transversal.MSPizzeria.Logging\Transversal.MSPizzeria.Logging.csproj" />
+  </ItemGroup>
+
+</Project>

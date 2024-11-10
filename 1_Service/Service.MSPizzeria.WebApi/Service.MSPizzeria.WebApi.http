@@ -1,0 +1,6 @@
+@Service.MSPizzeria.WebApi_HostAddress = http://localhost:5006
+
+GET {{Service.MSPizzeria.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
