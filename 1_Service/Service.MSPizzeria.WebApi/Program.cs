@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using Domain.MSPizzeria.Entity.Models.v1;
-using Service.MSPizzeria.WebApi;
+using Infrastructure.MSPizzeria.Data;
 using Service.MSPizzeria.WebApi.Modules.Authentication;
 using Service.MSPizzeria.WebApi.Modules.Feature;
 using Service.MSPizzeria.WebApi.Modules.Injection;
@@ -48,7 +48,7 @@ builder.Services.AddMapper();
 #endregion
 
 #region REFISTRO DE MEDIATR
-// builder.Services.AddMediatr();
+builder.Services.AddMediatr();
 #endregion
 
 #region INYECTAR MIS DEPENDENCIAS
@@ -68,10 +68,19 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 #endregion
 
-#region CONFIGURACION DE ENTITY FRAMEWORK REQUERIDO PARA LAS MIGRACIONES
+#region CONFIGURACION DE ENTITY FRAMEWORK REQUERIDO PARA LAS MIGRACIONES\
+
+//var sas = builder.Configuration.GetConnectionString("defaultConnection");
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
-    options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("defaultConnection"),
+        sqlServerOptionsAction: sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null);
+        });
 });
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

@@ -1,5 +1,8 @@
-﻿using Infrastructure.MSPizzeria.Data;
+﻿using Domain.MSPizzeria.Core;
+using Domain.MSPizzeria.Interface;
+using Infrastructure.MSPizzeria.Data;
 using Infrastructure.MSPizzeria.Interface;
+using Infrastructure.MSPizzeria.Repository;
 using Infrastructure.MSPizzeria.Service;
 using Transversal.MSPizzeria.Common;
 using Transversal.MSPizzeria.Logging;
@@ -24,11 +27,15 @@ public static class InjectionExtensions
 
         #region INYECCION DOMINO
         //AddScoped permite que se instancie 1 vez por cada solicitud
-        // services.AddScoped<ICategoryDomain, CategoryDomain>();
+        services.AddScoped<IUserDomain, UserDomain>();
+        services.AddScoped<IProductDomain, ProductDomain>();
         #endregion
         
         #region INYECCION INFRASTRUTURE
-
+        
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         
         #endregion

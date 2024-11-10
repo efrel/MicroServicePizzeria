@@ -10,4 +10,9 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\2_Application\Application.MSPizzeria.DTO\Application.MSPizzeria.DTO.csproj" />
+    <ProjectReference Include="..\..\3_Domain\Domain.MSPizzeria.Entity\Domain.MSPizzeria.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

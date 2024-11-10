@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.MSPizzeria.Data\Infrastructure.MSPizzeria.Data.csproj" />
+    <ProjectReference Include="..\Infrastructure.MSPizzeria.Interface\Infrastructure.MSPizzeria.Interface.csproj" />
+  </ItemGroup>
+
 </Project>

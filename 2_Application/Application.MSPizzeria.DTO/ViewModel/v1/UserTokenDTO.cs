@@ -1,4 +1,4 @@
-﻿namespace Application.MSPizzeria.DTO.ViewModel;
+﻿namespace Application.MSPizzeria.DTO.ViewModel.v1;
 
 public class UserTokenDTO
 {

@@ -6,4 +6,24 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\3_Domain\Domain.MSPizzeria.Interface\Domain.MSPizzeria.Interface.csproj" />
+    <ProjectReference Include="..\..\4_Infrastructure\Infrastructure.MSPizzeria.Interface\Infrastructure.MSPizzeria.Interface.csproj" />
+    <ProjectReference Include="..\..\5_Transversal\Transversal.MSPizzeria.Common\Transversal.MSPizzeria.Common.csproj" />
+    <ProjectReference Include="..\Application.MSPizzeria.DTO\Application.MSPizzeria.DTO.csproj" />
+    <ProjectReference Include="..\Application.MSPizzeria.Validator\Application.MSPizzeria.Validator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Identity">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.Identity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

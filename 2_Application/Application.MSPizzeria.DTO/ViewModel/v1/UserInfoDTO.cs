@@ -1,7 +1,7 @@
-﻿namespace Application.MSPizzeria.DTO.ViewModel;
+﻿namespace Application.MSPizzeria.DTO.ViewModel.v1;
 
 public class UserInfoDTO
 {
-    public string UserCode { get; set; }
+    public string Email { get; set; }
     public string Password { get; set; }
 }

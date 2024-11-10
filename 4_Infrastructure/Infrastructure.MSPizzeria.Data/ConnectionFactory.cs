@@ -22,7 +22,7 @@ public class ConnectionFactory : IConnectionFactory
             var sqlConnection = new SqlConnection();
             if (sqlConnection == null) return null;
             
-            sqlConnection.ConnectionString = _configuration.GetConnectionString("DefaultConnection");
+            sqlConnection.ConnectionString = _configuration.GetConnectionString("defaultConnection");
             
             sqlConnection.Open();
             return sqlConnection;
