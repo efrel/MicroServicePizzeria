@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6_Test", "6_Test", "{CD544C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.MSPizzeria.ApplicationTest", "6_Test\Test.MSPizzeria.ApplicationTest\Test.MSPizzeria.ApplicationTest.csproj", "{CCCB3AA3-402E-42FE-8A49-C5972FBF2146}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.MSPizzeria.Service", "4_Infrastructure\Infrastructure.MSPizzeria.Service\Infrastructure.MSPizzeria.Service.csproj", "{407253FB-723B-4BFA-9EB9-14F63B796A57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,10 @@ Global
 		{CCCB3AA3-402E-42FE-8A49-C5972FBF2146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCCB3AA3-402E-42FE-8A49-C5972FBF2146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCCB3AA3-402E-42FE-8A49-C5972FBF2146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{407253FB-723B-4BFA-9EB9-14F63B796A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{407253FB-723B-4BFA-9EB9-14F63B796A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{407253FB-723B-4BFA-9EB9-14F63B796A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{407253FB-723B-4BFA-9EB9-14F63B796A57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{50824E2C-3D6F-4859-8274-5BDD05329BB2} = {FB4BAE34-E835-4E62-AD4E-924EA83C8C59}
@@ -138,5 +144,6 @@ Global
 		{5FC338C0-4D9E-4FC3-A460-B8D1A9E947C4} = {AD1FF5FA-B973-4807-B40E-6CBDDA429435}
 		{98AC6B78-18A3-4D18-8FC5-0655B6124EE7} = {AD1FF5FA-B973-4807-B40E-6CBDDA429435}
 		{CCCB3AA3-402E-42FE-8A49-C5972FBF2146} = {CD544C79-3F40-425E-8F5D-B54990A46C60}
+		{407253FB-723B-4BFA-9EB9-14F63B796A57} = {101CA86B-5150-4640-B246-9BF0C0982F21}
 	EndGlobalSection
 EndGlobal
