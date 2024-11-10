@@ -29,12 +29,14 @@ public static class InjectionExtensions
         //AddScoped permite que se instancie 1 vez por cada solicitud
         services.AddScoped<IUserDomain, UserDomain>();
         services.AddScoped<IProductDomain, ProductDomain>();
+        services.AddScoped<IOrderDomain, OrderDomain>();
         #endregion
         
         #region INYECCION INFRASTRUTURE
         
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
         
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         

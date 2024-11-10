@@ -18,9 +18,37 @@ public class MappingProfile : Profile
         CreateMap<UserInfoModel, UserInfoDTO>().ReverseMap();
 
         CreateMap<Product, ProductDTO>().ReverseMap();
-        
         CreateMap<Product, CreateProductDTO>().ReverseMap();
         CreateMap<Product, UpdateProductDTO>().ReverseMap();
+        
+        CreateMap<Order, OrderDTO>()
+            .ForMember(dest => dest.CustomerName, 
+                opt => opt.MapFrom(src => src.Customer != null ? src.Customer.FirstName : string.Empty))
+            .ForMember(dest => dest.AddressDetail, 
+                opt => opt.MapFrom(src => src.Address != null ? src.Address.City : string.Empty))
+            .ForMember(dest => dest.Details, 
+                opt => opt.MapFrom(src => src.Details ?? new List<OrderDetail>()));
+        
+        CreateMap<OrderDetail, OrderDetailDTO>();
+        
+        // CreateOrderDTO -> Order mapping
+        CreateMap<CreateOrderDTO, Order>()
+            .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => DateTime.UtcNow))
+            .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => "Pending")) // Or your default status
+            .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => 0m)) // Will be calculated later
+            .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src.Details));
+
+        // CreateOrderDetailDTO -> OrderDetail mapping
+        CreateMap<CreateOrderDetailDTO, OrderDetail>()
+            .ForMember(dest => dest.UnitPrice, opt => opt.Ignore()) // Will be set from Product
+            .ForMember(dest => dest.Subtotal, opt => opt.Ignore()); // Will be calculated later
+
+        // UpdateOrderDTO -> Order mapping
+        CreateMap<UpdateOrderDTO, Order>()
+            .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src.Details));
+
+        // UpdateOrderDetailDTO -> OrderDetail mapping
+        CreateMap<UpdateOrderDetailDTO, OrderDetail>();
 
         #endregion
         

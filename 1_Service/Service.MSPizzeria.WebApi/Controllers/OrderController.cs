@@ -1,41 +1,43 @@
-﻿using Application.MSPizzeria.Commands.Product.Create;
-using Application.MSPizzeria.Commands.Product.Update;
+﻿using Application.MSPizzeria.Commands.Order.Create;
+using Application.MSPizzeria.Commands.Order.Update;
 using Application.MSPizzeria.DTO.ViewModel.v1;
-using Application.MSPizzeria.Queries.Product.GetAll;
-using Application.MSPizzeria.Queries.Product.GetById;
+using Application.MSPizzeria.Queries.Order.GetAll;
+using Application.MSPizzeria.Queries.Order.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Transversal.MSPizzeria.Common;
 
 namespace Service.MSPizzeria.WebApi.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]/[action]")]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-public class ProductController : ControllerBase
+public class OrderController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public ProductController(IMediator mediator)
+    public OrderController(IMediator mediator)
     {
         _mediator = mediator;
     }
-
+    
     /// <summary>
-    /// Get all product
+    /// get all orders
     /// </summary>
-    /// <param name="objParams"></param>
+    /// <param name="status"></param>
+    /// <param name="customerId"></param>
     /// <returns></returns>
-    [HttpGet(Name = "GetAllProducts")]
+    [HttpGet(Name = "GetAll")]
     [EnableCors("SitiosPermitidos")]
     [ProducesResponseType(400)]
-    [ProducesResponseType(typeof(List<ProductDTO>), 200)]
-    public async Task<IActionResult> GetAll([FromQuery] GetAllProductDTO objParams)
+    [ProducesResponseType(typeof(List<OrderDTO>), 200)]
+    public async Task<IActionResult> GetAll(
+        [FromQuery] string status,
+        [FromQuery] int? customerId)
     {
-        var query = new GetAllProductsQuery(objParams);
+        var query = new GetAllOrdersQuery(status, customerId);
         var response = await _mediator.Send(query);
         
         if(response.IsSuccess)
@@ -45,24 +47,19 @@ public class ProductController : ControllerBase
     }
 
     /// <summary>
-    /// Get product by id
+    /// get order by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("{id}")]
     [EnableCors("SitiosPermitidos")]
     [ProducesResponseType(400)]
-    [ProducesResponseType(typeof(ProductDTO), 200)]
+    [ProducesResponseType(typeof(OrderDTO), 200)]
     public async Task<IActionResult> GetById(int id)
     {
-        var objParams = new GetProductByIdDTO()
-        {
-            Id = id
-        };
-        
-        var query = new GetProductByIdQuery(objParams);
+        var query = new GetOrderByIdQuery(id);
         var response = await _mediator.Send(query);
-            
+        
         if(response.IsSuccess)
             return Ok(response);
 
@@ -70,18 +67,17 @@ public class ProductController : ControllerBase
     }
 
     /// <summary>
-    /// Create new product
+    /// create order
     /// </summary>
     /// <param name="objParams"></param>
     /// <returns></returns>
-    [HttpPost(Name = "Create")]
-    [Authorize(Roles = "Admin")]
+    [HttpPost]
     [EnableCors("SitiosPermitidos")]
     [ProducesResponseType(400)]
-    [ProducesResponseType(typeof(ProductDTO), 200)]
-    public async Task<IActionResult> Create([FromBody] CreateProductDTO objParams)
+    [ProducesResponseType(typeof(OrderDTO), 200)]
+    public async Task<IActionResult> Create([FromBody] CreateOrderDTO objParams)
     {
-        var command = new CreateProductCommand(objParams);
+        var command = new CreateOrderCommand(objParams);
         
         var response = await _mediator.Send(command);
         
@@ -92,19 +88,18 @@ public class ProductController : ControllerBase
     }
 
     /// <summary>
-    /// update product
+    /// update order
     /// </summary>
     /// <param name="id"></param>
     /// <param name="objParams"></param>
     /// <returns></returns>
     [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
     [EnableCors("SitiosPermitidos")]
     [ProducesResponseType(400)]
-    [ProducesResponseType(typeof(ProductDTO), 200)]
-    public async Task<IActionResult> Update(int id, [FromBody] UpdateProductDTO objParams)
+    [ProducesResponseType(typeof(OrderDTO), 200)]
+    public async Task<IActionResult> Update(int id, [FromBody] UpdateOrderDTO objParams)
     {
-        var command = new UpdateProductCommand(objParams);
+        var command = new UpdateOrderCommand(objParams);
         
         if (id != objParams.Id)
             return BadRequest();
@@ -116,5 +111,4 @@ public class ProductController : ControllerBase
 
         return BadRequest(response);
     }
-
 }
